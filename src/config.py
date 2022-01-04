@@ -20,7 +20,7 @@ class Config(object):
         mode = 'hover'
         self.model_type = 'np_hv'
 
-        self.type_classification = True # whether to predict the nuclear type
+        self.type_classification = False # whether to predict the nuclear type
         # ! must use CoNSeP dataset, where nuclear type labels are available
         # denotes number of classes for nuclear type classification, 
         # plus the background class
@@ -85,21 +85,20 @@ class Config(object):
         model_id = '%s' % self.model_type
         self.model_name = '%s/%s' % (exp_id, model_id)
         # loading chkpts in tensorflow, the path must not contain extra '/'
-        self.log_path = '/media/vqdang/logs/' # log root path - modify according to needs
-        self.save_dir = '%s/%s' % (self.log_path, self.model_name) # log file destination
+        self.save_dir = '/projects/ag-bozek/lucas/Data_Hovernet/' # log file destination
 
         #### Info for running inference
         self.inf_auto_find_chkpt = True 
         # path to checkpoints will be used for inference, replace accordingly
-        self.inf_model_path  = self.save_dir + '/model-19640.index'
+        self.inf_model_path = self.save_dir + 'PreTrained_Weights/hover_seg_CoNSeP'
 
         # output will have channel ordering as [Nuclei Type][Nuclei Pixels][Additional]
         # where [Nuclei Type] will be used for getting the type of each instance
         # while [Nuclei Pixels][Additional] will be used for extracting instances
 
         self.inf_imgs_ext = '.png'
-        self.inf_data_dir = '../../../data/CoNSeP/test/Images/'
-        self.inf_output_dir = 'output/%s/%s/' % (exp_id, model_id)
+        self.inf_data_dir = '/projects/ag-bozek/lucas/Data_General/Predictions/IHC_HE_ScieboData1/tiles_png/'
+        self.inf_output_dir = '/projects/ag-bozek/lucas/Data_General/Predictions/IHC_HE_ScieboData1/Outputs/'
 
         # for inference during evalutaion mode i.e run by infer.py
         self.eval_inf_input_tensor_names = ['images']
