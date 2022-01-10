@@ -85,7 +85,7 @@ class Config(object):
         model_id = '%s' % self.model_type
         self.model_name = '%s/%s' % (exp_id, model_id)
         # loading chkpts in tensorflow, the path must not contain extra '/'
-        self.save_dir = '/projects/ag-bozek/lucas/Data_Hovernet/' # log file destination
+        self.save_dir = '/projects/ag-bozek/lucas/Data_Hovernet' # log file destination
 
         #### Info for running inference
         self.inf_auto_find_chkpt = True 
