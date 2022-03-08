@@ -9,4 +9,5 @@ Check the issue on GitHub tensorflow:
 https://github.com/tensorflow/tensorflow/issues/15604
 Do: conda install -c anaconda cudatoolkit=9.0 cudnn=7
 
+The Last requirementnotes.txt (08/03/2022) includes these changes. 
 
