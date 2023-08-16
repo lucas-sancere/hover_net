@@ -28,18 +28,18 @@ if __name__ == "__main__":
 
     # Name of dataset 
     # This used to get the specific dataset img and ann loading scheme from dataset.py
-    dataset_name = "dlbcl_mc1" #stands for DLBCL multicohort  (Carina data)
+    dataset_name = "dlbcl_mc_chris" #stands for DLBCL multicohort  (Carina data)
     save_root = "dataset/training_data/%s/" % dataset_name
 
     # a dictionary to specify where the dataset path should be
     dataset_info = {
         "train": {
-            "img": (".png", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/PannukeSeg-CarinaClass1/Training2/TrainReduced/Images/"),
-            "ann": (".npy", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/PannukeSeg-CarinaClass1/Training2/TrainReduced/Labels/"),
+            "img": (".png", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/ChrisSeg-LucasJohannesUpdatesClass/Hvn-Mc-annotations/NapariClassCorrection/TrainingDataGeneration/TrainingSet/Train/Images/"),
+            "ann": (".npy", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/ChrisSeg-LucasJohannesUpdatesClass/Hvn-Mc-annotations/NapariClassCorrection/TrainingDataGeneration/TrainingSet/Train/Labels/"),
         },
         "valid": {
-            "img": (".png", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/PannukeSeg-CarinaClass1/Training2/Valid/Images/"),
-            "ann": (".npy", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/PannukeSeg-CarinaClass1/Training2/Valid/Labels/"),
+            "img": (".png", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/hrisSeg-LucasJohannesUpdatesClass/Hvn-Mc-annotations/NapariClassCorrection/TrainingDataGeneration/TrainingSet/Val/Images/"),
+            "ann": (".npy", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data//ChrisSeg-LucasJohannesUpdatesClass/Hvn-Mc-annotations/NapariClassCorrection/TrainingDataGeneration/TrainingSet/Val/Labels/"),
         },
     }
 

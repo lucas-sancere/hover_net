@@ -17,7 +17,7 @@ class Config(object):
         self.logging = True
 
         # turn on debug flag to trace some parallel processing problems more easily
-        self.debug = False
+        self.debug = True
 
         model_name = "hovernet"
         model_mode = "fast" # choose either `original` or `fast`
@@ -45,8 +45,10 @@ class Config(object):
             if act_shape != [256,256] or out_shape != [164,164]:
                 raise Exception("If using `original` mode, input shape must be [256,256] and output shape must be [164,164]")
 
+        # self.dataset_name = "dlbcl_mc_chris" # extracts dataset info from dataset.py
+        # self.log_dir = "logs_DLBCLChris/{}/".format(self.optname) # where checkpoints will be saved
         self.dataset_name = "dlbcl3" # extracts dataset info from dataset.py
-        self.log_dir = "logs_DLBCL/{}/".format(self.optname) # where checkpoints will be saved
+        self.log_dir = "logs_DLBCL3/{}/".format(self.optname) # where checkpoints will be saved
 
         # paths to training and validation patches
         self.train_dir_list = [

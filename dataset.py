@@ -120,6 +120,19 @@ class __DLBCL4(__AbstractDataset):
 
 
 ####
+class __DLBCLMC1(__AbstractDataset):
+    """DLBCL data set
+    
+    """
+
+####
+class __DLBCLMCCHRIS(__AbstractDataset):
+    """DLBCL data set
+    
+    """
+
+
+####
 def get_dataset(name):
     """Return a pre-defined dataset object associated with `name`."""
     name_dict = {
@@ -130,6 +143,8 @@ def get_dataset(name):
         "dlbcl": lambda: __DLBCL(),
         "dlbcl3": lambda: __DLBCL3(),
         "dlbcl4": lambda: __DLBCL4(),
+        "dlbcl_mc1": lambda: __DLBCLMC1(),
+        "dlbcl_mc_chris": lambda: __DLBCLMCCHRIS()
     }
     if name.lower() in name_dict:
         return name_dict[name]()
