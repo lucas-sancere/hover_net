@@ -24,11 +24,13 @@ if __name__ == "__main__":
 
     win_size = [540, 540]
     step_size = [164, 164]
-    extract_type = "mirror"  # Choose 'mirror' or 'valid'. 'mirror'- use padding at borders. 'valid'- only extract from valid regions.
+
+    extract_type = "valid"  # Choose 'mirror' or 'valid'. 'mirror'- use padding at borders. 'valid'- only extract from valid regions.
+    # When using HoVer-Net, use mirror as the extract type
 
     # Name of dataset 
     # This used to get the specific dataset img and ann loading scheme from dataset.py
-    dataset_name = "dlbcl_mc_chris" #stands for DLBCL multicohort  (Carina data)
+    dataset_name = "dlbcl_mc_chrisfix_val" #stands for DLBCL multicohort  (Carina data)
     save_root = "dataset/training_data/%s/" % dataset_name
 
     # a dictionary to specify where the dataset path should be

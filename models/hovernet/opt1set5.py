@@ -32,13 +32,13 @@ def get_config(nr_type, mode):
                     "net": {
                         "desc": lambda: create_model(
                             input_ch=3, nr_types=nr_type, 
-                            freeze=True, mode=mode
+                            freeze=False, mode=mode
                         ),
                         "optimizer": [
                             optim.Adam,
                             {  # should match keyword for parameters within the optimizer
                                 "lr": 1.0e-4,  # initial learning rate,
-                                "betas": (0.9, 0.999),
+                                "betas": (0.9, 0.9),
                             },
                         ],
                         # learning rate scheduler
@@ -57,8 +57,8 @@ def get_config(nr_type, mode):
                     },
                 },
                 "target_info": {"gen": (gen_targets, {}), "viz": (prep_sample, {})},
-                "batch_size": {"train": 16, "valid": 16,},  # engine name : value
-                "nr_epochs": 50,
+                "batch_size": {"train": 8, "valid": 8,},  # engine name : value
+                "nr_epochs": 100,
             },
             # {
             #     "run_info": {
