@@ -91,7 +91,7 @@ def get_config(nr_type, mode):
                     },
                 },
                 "target_info": {"gen": (gen_targets, {}), "viz": (prep_sample, {})},
-                "batch_size": {"train": 16, "valid": 16,}, # batch size per gpu
+                "batch_size": {"train": 16, "valid": 16,}, # batch size per gpu -> BATCH SIZE TOO BIG
                 "nr_epochs": 100,
             },
         ],
