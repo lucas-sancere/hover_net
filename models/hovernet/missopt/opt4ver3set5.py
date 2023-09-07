@@ -52,7 +52,7 @@ def get_config(nr_type, mode):
                         },
                         # path to load, -1 to auto load checkpoint from previous phase,
                         # None to start from scratch
-                        "pretrained": "/data/lsancere/Hover_Net_Complete/pytorch-final/hover_net/logs_DLBCL/opt2set4/01/net_epoch=100.tar",
+                        "pretrained": "/data/lsancere/Data_General/PreTrained_Weights/Hovernet/ImageNet-ResNet50-Preact_pytorch.tar",
                         # 'pretrained': None,
                     },
                 },
@@ -86,14 +86,13 @@ def get_config(nr_type, mode):
                         },
                         # path to load, -1 to auto load checkpoint from previous phase,
                         # None to start from scratch
-                        #'pretrained': 'path',
-                        "pretrained": -1
+                        'pretrained': -1,
 
                     },
                 },
                 "target_info": {"gen": (gen_targets, {}), "viz": (prep_sample, {})},
                 "batch_size": {"train": 8, "valid": 8,}, # batch size per gpu
-                "nr_epochs": 100,
+                "nr_epochs": 200,
             },
         ],
         # ------------------------------------------------------------------
