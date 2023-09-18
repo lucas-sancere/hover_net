@@ -2,6 +2,7 @@
 *__pycache__
 
 # directories
+.idea/
 cache/
 dataset/
 docs/
