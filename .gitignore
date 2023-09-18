@@ -13,3 +13,6 @@ logs*/
 *.npz
 *.png
 *.log
+
+#swap files
+*.swp
