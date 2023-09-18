@@ -24,22 +24,24 @@ if __name__ == "__main__":
 
     win_size = [540, 540]
     step_size = [164, 164]
-    extract_type = "mirror"  # Choose 'mirror' or 'valid'. 'mirror'- use padding at borders. 'valid'- only extract from valid regions.
+
+    extract_type = "valid"  # Choose 'mirror' or 'valid'. 'mirror'- use padding at borders. 'valid'- only extract from valid regions.
+    # When using HoVer-Net, use mirror as the extract type
 
     # Name of dataset 
     # This used to get the specific dataset img and ann loading scheme from dataset.py
-    dataset_name = "dlbcl3"
+    dataset_name = "dlbcl_mc_chrisfix_val" #stands for DLBCL multicohort  (Carina data)
     save_root = "dataset/training_data/%s/" % dataset_name
 
     # a dictionary to specify where the dataset path should be
     dataset_info = {
         "train": {
-            "img": (".png", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/PannukeOriginal/Training2/TrainReduced/Images/"),
-            "ann": (".npy", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/PannukeOriginal/Training2/TrainReduced/Labels/"),
+            "img": (".png", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/ChrisSeg-LucasJohannesUpdatesClass/Hvn-Mc-annotations/NapariClassCorrection/TrainingDataGeneration/TrainingSet/Train/Images/"),
+            "ann": (".npy", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/ChrisSeg-LucasJohannesUpdatesClass/Hvn-Mc-annotations/NapariClassCorrection/TrainingDataGeneration/TrainingSet/Train/Labels/"),
         },
         "valid": {
-            "img": (".png", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/PannukeOriginal/Training2/Valid/Images/"),
-            "ann": (".npy", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/PannukeOriginal/Training2/Valid/Labels/"),
+            "img": (".png", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/hrisSeg-LucasJohannesUpdatesClass/Hvn-Mc-annotations/NapariClassCorrection/TrainingDataGeneration/TrainingSet/Val/Images/"),
+            "ann": (".npy", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data//ChrisSeg-LucasJohannesUpdatesClass/Hvn-Mc-annotations/NapariClassCorrection/TrainingDataGeneration/TrainingSet/Val/Labels/"),
         },
     }
 

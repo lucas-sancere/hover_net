@@ -52,8 +52,8 @@ def get_config(nr_type, mode):
                         },
                         # path to load, -1 to auto load checkpoint from previous phase,
                         # None to start from scratch
-                        "pretrained": "/data/lsancere/Data_General/PreTrained_Weights/Hovernet/ImageNet-ResNet50-Preact_pytorch.tar",
-                        #'pretrained': None,
+                        "pretrained": "/data/lsancere/Hover_Net_Complete/pytorch-final/hover_net/logs_DLBCLChris/opt2set5/01/net_epoch=86.tar",
+                        # 'pretrained': None,
                     },
                 },
                 "target_info": {"gen": (gen_targets, {}), "viz": (prep_sample, {})},
@@ -72,7 +72,7 @@ def get_config(nr_type, mode):
                             optim.Adam,
                             {  # should match keyword for parameters within the optimizer
                                 "lr": 1.0e-4,  # initial learning rate,
-                                "betas": (0.9, 0.9),
+                                "betas": (0.9, 0.999),
                             },
                         ],
                         # learning rate scheduler
@@ -86,11 +86,12 @@ def get_config(nr_type, mode):
                         },
                         # path to load, -1 to auto load checkpoint from previous phase,
                         # None to start from scratch
+                        #'pretrained': 'path',
                         "pretrained": -1,
                     },
                 },
                 "target_info": {"gen": (gen_targets, {}), "viz": (prep_sample, {})},
-                "batch_size": {"train": 4, "valid": 8,}, # batch size per gpu
+                "batch_size": {"train": 8, "valid": 8,}, # batch size per gpu
                 "nr_epochs": 100,
             },
         ],

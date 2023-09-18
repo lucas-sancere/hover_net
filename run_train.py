@@ -304,12 +304,16 @@ if __name__ == "__main__":
         optname = "opt"   
     print(optname)
     trainer = TrainManager(optname)
-
     if args["--view"]:
         if args["--view"] != "train" and args["--view"] != "valid":
             raise Exception('Use "train" or "valid" for --view.')
         trainer.view_dataset(args["--view"])
     else:
+        # os.environ["CUDA_VISIBLE_DEVICES"] = args["--gpu"]
+        trainer.run()
+
+
+    # else:
         # os.environ["CUDA_VISIBLE_DEVICES"] = args["--gpu"] #use of slurm so comment line
  
         # prepare profiler file to have more information abot the trianing and indentify some time bottleneck
@@ -320,7 +324,7 @@ if __name__ == "__main__":
         #     with_stack=True)
         # prof.start()
         
-        trainer.run()
+        # trainer.run()
         
         # prof.stop()    
             # It looks like it is working but
