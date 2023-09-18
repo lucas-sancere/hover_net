@@ -4,9 +4,9 @@
 # directories
 cache/
 dataset/
+docs/
+examples/
 exp_output/
-log/
-logs/
 logs*/
 
 # checkpoint paths
