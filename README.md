@@ -1,5 +1,5 @@
 
-# HoVer-Net as histo-miner submodule
+# HoVer-Net as an histo-miner submodule
 
 Here is the presentation of Hovernet model, as a submodule of histo-miner. The original code is coming from: [enter].
 This fork contains some variation corresponding to the specific training used for histo-miner pipeline. 
@@ -10,6 +10,43 @@ This fork contains some variation corresponding to the specific training used fo
 This README is a copy of the original readme one can find [enter link].
 
 A multiple branch network that performs nuclear instance segmentation and classification within a single network. The network leverages the horizontal and vertical distances of nuclear pixels to their centres of mass to separate clustered cells. A dedicated up-sampling branch is used to classify the nuclear type for each segmented instance. <br />
+
+
+## Installation
+
+One can install the required dependencies inside a conda env as follow:
+
+**Step 1.**Open a terminal in your local or remote device, create a conda environment and activate it. 
+
+```shell
+conda create -n hovernet_submodule python==3.6.12 -y
+conda activate hovernet_submodule
+```
+
+**Step 2.** Install PyTorch ([official instructions](https://pytorch.org/get-started/locally/)):
+
+- **Recommended:** install PyTorch version 1.10 with CUDA 11.3 (tested on V100 and A100 GPUs as well as older ones):
+```shell
+pip install torch==1.10.0+cu113 --extra-index-url https://download.pytorch.org/whl/cu113
+```
+
+- **Not Recommended: **Original env from hovernet repo [enter], install  PyTorch version 1.6 with CUDA 10.2 (not working on A100 and younger):
+```shell
+pip install torch==1.6.0 torchvision==0.7.0
+```
+
+**Step 3**. Install all dependancies. Still inside the `hovernet_submodule` env run:
+
+```shell
+pip install -r requirements.txt
+```
+
+
+
+--------- Original README ---
+
+-----------------------------------------------------------------------------
+
 
 [Link](https://www.sciencedirect.com/science/article/abs/pii/S1361841519301045?via%3Dihub) to Medical Image Analysis paper. <br />
 
@@ -278,4 +315,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Note that the PanNuke dataset is licensed under [Attribution-NonCommercial-ShareAlike 4.0 International](http://creativecommons.org/licenses/by-nc-sa/4.0/), therefore the derived weights for HoVer-Net are also shared under the same license. Please consider the implications of using the weights under this license on your work and it's licensing. 
 
 
-
+--------------------------------------------------------------------------------

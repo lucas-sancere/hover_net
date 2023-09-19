@@ -35,14 +35,14 @@ class Config(object):
         # If original model mode is used, use [270,270] and [80,80] for act_shape and out_shape respectively
         # If fast model mode is used, use [256,256] and [164,164] for act_shape and out_shape respectively
         aug_shape = [540, 540] # patch shape used during augmentation (larger patch may have less border artefacts)
-        act_shape = [256,256] # patch shape used as input to network - central crop performed after augmentation
-        out_shape = [164,164] # patch shape at output of network
+        act_shape = [256, 256] # patch shape used as input to network - central crop performed after augmentation
+        out_shape = [164, 164] # patch shape at output of network
 
         if model_mode == "original":
-            if act_shape != [270,270] or out_shape != [80,80]:
+            if act_shape != [270, 270] or out_shape != [80, 80]:
                 raise Exception("If using `original` mode, input shape must be [270,270] and output shape must be [80,80]")
         if model_mode == "fast":
-            if act_shape != [256,256] or out_shape != [164,164]:
+            if act_shape != [256, 256] or out_shape != [164, 164]:
                 raise Exception("If using `original` mode, input shape must be [256,256] and output shape must be [164,164]")
 
         self.dataset_name = "dlbcl_mc_chrisfix" # extracts dataset info from dataset.py
@@ -59,8 +59,8 @@ class Config(object):
         ]
 
         self.shape_info = {
-            "train": {"input_shape": act_shape, "mask_shape": out_shape,},
-            "valid": {"input_shape": act_shape, "mask_shape": out_shape,},
+            "train": {"input_shape": act_shape, "mask_shape": out_shape, },
+            "valid": {"input_shape": act_shape, "mask_shape": out_shape, },
         }
 
         # * parsing config to the running state and set up associated variables
