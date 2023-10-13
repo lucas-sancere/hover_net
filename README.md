@@ -25,7 +25,7 @@ conda activate hovernet_submodule
 
 **Step 2.** Install PyTorch ([official instructions](https://pytorch.org/get-started/locally/)):
 
-- **Recommended:** install PyTorch version 1.10 with CUDA 11.3 (tested on V100 and A100 GPUs as well as older ones):
+- **Recommended:** install PyTorch version 1.10 with CUDA 11.3 (tested on V100 and A100 GPUs):
 ```shell
 pip install torch==1.10.0+cu113 --extra-index-url https://download.pytorch.org/whl/cu113
 ```
@@ -35,12 +35,22 @@ pip install torch==1.10.0+cu113 --extra-index-url https://download.pytorch.org/w
 pip install torch==1.6.0 torchvision==0.7.0
 ```
 
-**Step 3**. Install all dependancies. Still inside the `hovernet_submodule` env run:
+**Step 3**. Install conda dependancies
+```shell
+conda install openslide==3.4.1
+```
+
+**Step 4**. Install all dependancies. Still inside the `hovernet_submodule` env run:
 
 ```shell
 pip install -r requirements.txt
 ```
 
+
+-> AS it is an env with conda and pip packages, maybe do the env from a file like: 
+```shell
+conda env create -f environment.yml
+```
 
 
 --------- Original README ---
