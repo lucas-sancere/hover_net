@@ -18,7 +18,7 @@ One can install the required dependencies inside a conda env as follow:
 
 **Step 1.**Open a terminal in your local or remote device, create hovernet_submodule environment using the corresponding yml congif and activate it: 
 ```shell
-conda env create -f hovernet_submodule.yml
+conda env create -f hovernet_submodule.yml 
 conda activate hovernet_submodule
 ```
 
