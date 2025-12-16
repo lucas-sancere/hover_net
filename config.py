@@ -25,7 +25,7 @@ class Config(object):
         if model_mode not in ["original", "fast"]:
             raise Exception("Must use either `original` or `fast` as model mode")
 
-        nr_type = 6 # number of nuclear types (including background)
+        nr_type = 3 # number of nuclear types (including background)
 
         # whether to predict the nuclear type, availability depending on dataset!
         self.type_classification = True
@@ -34,7 +34,7 @@ class Config(object):
         # below config is for original mode. 
         # If original model mode is used, use [270,270] and [80,80] for act_shape and out_shape respectively
         # If fast model mode is used, use [256,256] and [164,164] for act_shape and out_shape respectively
-        aug_shape = [540, 540] # patch shape used during augmentation (larger patch may have less border artefacts)
+        aug_shape = [256, 256] # patch shape used during augmentation (larger patch may have less border artefacts)
         act_shape = [256,256] # patch shape used as input to network - central crop performed after augmentation
         out_shape = [164,164] # patch shape at output of network
 
@@ -45,17 +45,17 @@ class Config(object):
             if act_shape != [256,256] or out_shape != [164,164]:
                 raise Exception("If using `original` mode, input shape must be [256,256] and output shape must be [164,164]")
 
-        self.dataset_name = "dlbcl_mc_chrisfix" # extracts dataset info from dataset.py
-        self.log_dir = "logs_DLBCLChris/{}/".format(self.optname) # where checkpoints will be saved
+        self.dataset_name = "converted_443418ws" # extracts dataset info from dataset.py
+        self.log_dir = "logs_converted_443418ws/{}/".format(self.optname) # where checkpoints will be saved
         # self.dataset_name = "dlbcl_mc1" # extracts dataset info from dataset.py
         # self.log_dir = "logs_DLBCLMC1/{}/".format(self.optname) # where checkpoints will be saved
 
         # paths to training and validation patches
         self.train_dir_list = [
-            "/data/lsancere/Hover_Net_Complete/pytorch-final/hover_net/dataset/training_data/dlbcl_mc_chrisfix/dlbcl_mc_chrisfix/train/540x540_164x164/"
+            "/data/lsancere/Data_General/TrainingSets/GraphSet/baseline_dataset/4434-18/hovernet_binaryformat/2splits/train01test2/Train/labels/"
         ]
         self.valid_dir_list = [
-            "/data/lsancere/Hover_Net_Complete/pytorch-final/hover_net/dataset/training_data/dlbcl_mc_chrisfix/dlbcl_mc_chrisfix/valid/540x540_164x164/"
+            "/data/lsancere/Data_General/TrainingSets/GraphSet/baseline_dataset/4434-18/hovernet_binaryformat/2splits/train01test2/Test/labels/"
         ]
 
         self.shape_info = {

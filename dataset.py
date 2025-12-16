@@ -142,6 +142,14 @@ class __DLBCLMCCHRIS_FIX(__AbstractDataset):
 
 
 ####
+class __Converted_443418WS(__AbstractDataset):
+    """PANNUKE data keeping only skin images
+    
+    """
+
+
+
+####
 def get_dataset(name):
     """Return a pre-defined dataset object associated with `name`."""
     name_dict = {
@@ -155,6 +163,7 @@ def get_dataset(name):
         "dlbcl_mc1": lambda: __DLBCLMC1(),
         "dlbcl_mc_chris": lambda: __DLBCLMCCHRIS(),
         "dlbcl_mc_chrisfix": lambda: __DLBCLMCCHRIS_FIX(),
+        "converted_443418ws": lambda: __Converted_443418WS()
         # "dlbcl_mc_chrisfix_noobg": lambda: __DLBCLMCCHRIS_FIX_NOOBG(), 
         # "dlbcl_mc_test1": lambda: __TEST1(),
         # "dlbcl_mc_test11": lambda: __TEST11(),

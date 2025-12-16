@@ -8,6 +8,123 @@ from .utils import crop_to_shape, dice_loss, mse_loss, msge_loss, xentropy_loss
 
 from collections import OrderedDict
 
+
+
+def _dice_binary(pred_bin: np.ndarray, gt_bin: np.ndarray, eps: float = 1e-8) -> float:
+    pred = pred_bin.astype(bool)
+    gt   = gt_bin.astype(bool)
+    inter = np.logical_and(pred, gt).sum()
+    den = pred.sum() + gt.sum()
+    if den == 0:
+        return float("nan")
+    return float((2.0 * inter + eps) / (den + eps))
+
+def _jaccard_binary(pred_bin: np.ndarray, gt_bin: np.ndarray, eps: float = 1e-8) -> float:
+    pred = pred_bin.astype(bool)
+    gt   = gt_bin.astype(bool)
+    inter = np.logical_and(pred, gt).sum()
+    union = np.logical_or(pred, gt).sum()
+    if union == 0:
+        return float("nan")
+    return float((inter + eps) / (union + eps))
+
+def _remap_types_to_binary(type_map: np.ndarray) -> np.ndarray:
+    """
+    Your binary setup:
+      GT/Pred type_map in {0,1,2} already OR in {0,5,6} depending on pipeline.
+    We convert to binary foreground mask: 1 if type in {1,2} or {5,6}.
+    """
+    tm = type_map.astype(np.int32)
+    fg = (tm == 1) | (tm == 2) | (tm == 5) | (tm == 6)
+    return fg.astype(np.uint8)
+
+def _balanced_acc_from_inst_types(gt_inst: np.ndarray, gt_type: np.ndarray,
+                                 pr_inst: np.ndarray, pr_type: np.ndarray):
+    """
+    Compute balanced accuracy over *matched instances*.
+    This is 'per nucleus' (per instance), not per pixel.
+
+    Returns:
+      bal_acc (float or None),
+      geom_tp (int), class_pairs (int), gt_inst_total (int)
+    """
+    from sklearn.metrics import balanced_accuracy_score
+
+    gt_inst = gt_inst.astype(np.int32)
+    pr_inst = pr_inst.astype(np.int32)
+    gt_type = gt_type.astype(np.int32)
+    pr_type = pr_type.astype(np.int32)
+
+    gt_ids = np.unique(gt_inst)
+    gt_ids = gt_ids[gt_ids > 0]
+    gt_inst_total = int(len(gt_ids))
+
+    if gt_inst_total == 0:
+        return None, 0, 0, 0
+
+    # Build GT instance -> type (majority vote)
+    gt_id2t = {}
+    for gid in gt_ids:
+        m = (gt_inst == gid)
+        tvals = gt_type[m]
+        if tvals.size == 0:
+            continue
+        gt_id2t[int(gid)] = int(np.bincount(tvals).argmax())
+
+    # Same for prediction
+    pr_ids = np.unique(pr_inst)
+    pr_ids = pr_ids[pr_ids > 0]
+    pr_id2t = {}
+    for pid in pr_ids:
+        m = (pr_inst == pid)
+        tvals = pr_type[m]
+        if tvals.size == 0:
+            continue
+        pr_id2t[int(pid)] = int(np.bincount(tvals).argmax())
+
+    # Instance matching by IoU (simple greedy)
+    # NOTE: This is intentionally lightweight. If you already have PQ matching code,
+    # you should use THAT matching instead for consistency.
+    geom_tp = 0
+    y_true = []
+    y_pred = []
+
+    pr_used = set()
+    for gid in gt_ids:
+        gmask = (gt_inst == gid)
+        best_iou = 0.0
+        best_pid = None
+
+        for pid in pr_ids:
+            if pid in pr_used:
+                continue
+            pmask = (pr_inst == pid)
+            inter = np.logical_and(gmask, pmask).sum()
+            if inter == 0:
+                continue
+            union = np.logical_or(gmask, pmask).sum()
+            iou = inter / (union + 1e-8)
+            if iou > best_iou:
+                best_iou = iou
+                best_pid = pid
+
+        # typical nucleus matching IoU threshold is 0.5
+        if best_pid is not None and best_iou >= 0.5:
+            pr_used.add(best_pid)
+            geom_tp += 1
+            y_true.append(gt_id2t.get(int(gid), 0))
+            y_pred.append(pr_id2t.get(int(best_pid), 0))
+
+    class_pairs = int(len(y_true))
+    if class_pairs == 0:
+        return None, int(geom_tp), 0, gt_inst_total
+
+    bal_acc = float(balanced_accuracy_score(np.asarray(y_true), np.asarray(y_pred)))
+    return bal_acc, int(geom_tp), class_pairs, gt_inst_total
+
+
+
+
 ####
 def train_step(batch_data, run_info):
     # TODO: synchronize the attach protocol

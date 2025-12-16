@@ -30,18 +30,18 @@ if __name__ == "__main__":
 
     # Name of dataset 
     # This used to get the specific dataset img and ann loading scheme from dataset.py
-    dataset_name = "dlbcl_mc_chrisfix_val" #stands for DLBCL multicohort  (Carina data)
+    dataset_name = "converted_443418ws" #stands for DLBCL multicohort  (Carina data)
     save_root = "dataset/training_data/%s/" % dataset_name
 
     # a dictionary to specify where the dataset path should be
     dataset_info = {
         "train": {
-            "img": (".png", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/ChrisSeg-LucasJohannesUpdatesClass/Hvn-Mc-annotations/NapariClassCorrection/TrainingDataGeneration/TrainingSet/Train/Images/"),
-            "ann": (".npy", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/ChrisSeg-LucasJohannesUpdatesClass/Hvn-Mc-annotations/NapariClassCorrection/TrainingDataGeneration/TrainingSet/Train/Labels/"),
+            "img": (".png", "/data/lsancere/Data_General/TrainingSets/GraphSet/baseline_dataset/4434-18/hovernet_binaryformat/2splits/train01test2/Train/images/"),
+            "ann": (".npy", "/data/lsancere/Data_General/TrainingSets/GraphSet/baseline_dataset/4434-18/hovernet_binaryformat/2splits/train01test2/Train/labels/"),
         },
-        "valid": {
-            "img": (".png", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data/hrisSeg-LucasJohannesUpdatesClass/Hvn-Mc-annotations/NapariClassCorrection/TrainingDataGeneration/TrainingSet/Val/Images/"),
-            "ann": (".npy", "/data/lsancere/Data_General/TrainingSets/Hovernet/Carina-Corinna-Johannes-Data//ChrisSeg-LucasJohannesUpdatesClass/Hvn-Mc-annotations/NapariClassCorrection/TrainingDataGeneration/TrainingSet/Val/Labels/"),
+        "test": {
+            "img": (".png", "/data/lsancere/Data_General/TrainingSets/GraphSet/baseline_dataset/4434-18/hovernet_binaryformat/2splits/train01test2/Test/images/"),
+            "ann": (".npy", "/data/lsancere/Data_General/TrainingSets/GraphSet/baseline_dataset/4434-18/hovernet_binaryformat/2splits/train01test2/Test/labels/"),
         },
     }
 
